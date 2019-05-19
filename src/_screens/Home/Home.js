@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
+import { firestoreConnect} from 'react-redux-firebase';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
+import { usersActions } from '../../_actions';
 import { Container, Card, CardItem, Body } from 'native-base';
 import { Text } from 'react-native';
 import { AppHeader } from '../../_components/AppHeader';
 import { SimpleList } from '../../_components/SimpleList';
+
 
 class Home extends Component {
     static navigationOptions = {
@@ -30,4 +35,23 @@ class Home extends Component {
     }
 }
 
-export { Home };
+const mapDispatchToProps = dispatch => {
+    return {
+        getUser: userId => dispatch(usersActions.getUser(userId)),
+    };
+}
+
+const mapStateToProps = state => {
+    return {
+        user: firestoreShoplist.users,
+    };
+}
+
+const composedHome = compose(
+    connect(mapStateToProps, mapDispatchToProps),
+    firestoreConnect([
+        { collection: 'users'},
+    ]),
+);
+
+export { composedHome as Home };
