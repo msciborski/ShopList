@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Container } from 'native-base';
-import AppHeader from '../components/AppHeader/AppHeader';
+import { AppHeader } from '../../_components/AppHeader';
 
-export default class ShoppingLists extends Component {
+class ShoppingLists extends Component {
     render() {
         return  (
             <Container>
@@ -11,3 +11,5 @@ export default class ShoppingLists extends Component {
         )
     }
 }
+
+export { ShoppingLists };

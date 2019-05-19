@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Header, Left, Right, Body, Title, Button, Icon } from 'native-base';
 
-export default class AppHeader extends Component {
+class AppHeader extends Component {
     render() {
         const { title, navigation } = this.props;
         return (
@@ -21,3 +21,5 @@ export default class AppHeader extends Component {
         );
     }
 }
+
+export { AppHeader };

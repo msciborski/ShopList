@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { Container, Card, CardItem, Body } from 'native-base';
 import { Text } from 'react-native';
-import AppHeader from '../components/AppHeader/AppHeader';
-import SimpleList from '../components/SimpleList/SimpleList';
+import { AppHeader } from '../../_components/AppHeader';
+import { SimpleList } from '../../_components/SimpleList';
 
-export default class Home extends Component {
+class Home extends Component {
     static navigationOptions = {
         title: 'Home',
     };
@@ -29,3 +29,5 @@ export default class Home extends Component {
         );
     }
 }
+
+export { Home };
