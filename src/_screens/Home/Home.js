@@ -7,6 +7,7 @@ import { Container, Card, CardItem, Body } from 'native-base';
 import { Text } from 'react-native';
 import { AppHeader } from '../../_components/AppHeader';
 import { SimpleList } from '../../_components/SimpleList';
+import { users } from '../../_reducers/users.reducer';
 
 
 class Home extends Component {
@@ -19,7 +20,7 @@ class Home extends Component {
 
         return (
             <Container>
-                <AppHeader title={"Home"} navigation={this.props.navigation} />
+                <AppHeader title="Home" navigation={this.props.navigation} />
                 <Card>
                     <CardItem header>
                         <Text>Latest shopping lists</Text>
@@ -43,15 +44,15 @@ const mapDispatchToProps = dispatch => {
 
 const mapStateToProps = state => {
     return {
-        user: firestoreShoplist.users,
+        users: state.firestore.users,
     };
 }
 
 const composedHome = compose(
     connect(mapStateToProps, mapDispatchToProps),
     firestoreConnect([
-        { collection: 'users'},
+        { collection: 'users' }
     ]),
-);
+)(Home);
 
 export { composedHome as Home };

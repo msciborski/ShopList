@@ -1,9 +1,11 @@
 import { combineReducers } from 'redux';
+import { firebaseReducer } from 'react-redux-firebase';
 import { firestoreReducer } from 'redux-firestore';
 import { users } from './users.reducer';
 
 const rootReducer = combineReducers({
-    firestoreShoplist: firestoreReducer,
+    firestore: firestoreReducer,
+    firebase: firebaseReducer,
     users,
 });
 
