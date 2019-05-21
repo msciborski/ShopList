@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { Container } from 'native-base';
-import { Text } from 'react-native';
-import AppHeader from '../components/AppHeader/AppHeader';
+import { AppHeader } from '../../_components/AppHeader';
 
-export default class List extends Component {
+class ShoppingLists extends Component {
     render() {
         return  (
             <Container>
@@ -12,3 +11,5 @@ export default class List extends Component {
         )
     }
 }
+
+export { ShoppingLists };
