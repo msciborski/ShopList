@@ -6,15 +6,18 @@ export const usersActions = {
 };
 
 function getUser(userId) {
+    console.log('Get user action');
     return (dispatch, getState, { getFirestore }) => {
         dispatch(request());
 
         usersService.getUser(userId, getFirestore)
             .then((doc) => {
+                console.log('Doc', doc);
                 if (doc.exists) {
                     const data = doc.data();
                     dispatch(success(data));
                 } else {
+                    console.log('Cos sie wyjebalo');
                     dispatch(failure('User doesn\'t exists.'));
                 }
             }).catch(err => dispatch(failure(err)));
