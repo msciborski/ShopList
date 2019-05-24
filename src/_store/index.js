@@ -5,10 +5,7 @@ import { createLogger } from 'redux-logger';
 import thunk from 'redux-thunk';
 
 import RNFirebase from '../Firebase';
-
-const rootReducer = {
-
-};
+import rootReducer from '../_reducers';
 
 const loggerMiddleware = createLogger();
 
@@ -17,7 +14,7 @@ const store = createStore(rootReducer, compose(
         thunk.withExtraArgument({ getFirebase, getFirestore }),
         loggerMiddleware,
     ),
-    reactReduxFirebase(RNFirebase, { userProfile: 'users', useFirestoreForProfile: true, attachAuthIsReady: false }),
+    reactReduxFirebase(RNFirebase, { userProfile: 'users', useFirestoreForProfile: true, attachAuthIsReady: false, enableRedirectHandling: false }),
     reduxFirestore(RNFirebase),
 ));
 
