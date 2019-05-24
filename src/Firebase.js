@@ -1,6 +1,4 @@
-import firebase from 'firebase/app'
-import 'firebase/firestore'
-import 'firebase/auth';
+import RNFirebase from 'react-native-firebase';
 
 const firebaseConfig = {
     apiKey: "AIzaSyD3ZIi2oPFSe3Lzih80maCb_UbvL-d3DjM",
@@ -10,9 +8,9 @@ const firebaseConfig = {
     storageBucket: "shoplist-2baf2.appspot.com",
     messagingSenderId: "954389931263",
     appId: "1:954389931263:web:8e5a69afc35f1dcf"
-  };
+};
 
-firebase.initializeApp(firebaseConfig);
-firebase.firestore();
+RNFirebase.initializeApp(firebaseConfig);
+RNFirebase.firestore();
 
-export default firebase;
+export default RNFirebase;

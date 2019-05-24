@@ -1,2 +1,1 @@
-export * from './users.action';
-export * from './users.auth.action';
+export * from './users.auth.actions';
