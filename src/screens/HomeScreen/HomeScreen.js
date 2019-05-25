@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Text } from 'react-native';
-
+import { MenuIcon } from '../../components/MenuIcon';
 
 export class HomeScreen extends Component {
     static navigationOptions = {
@@ -9,7 +9,7 @@ export class HomeScreen extends Component {
 
     render() {
         return (
-            <Text>Home</Text>
+            <MenuIcon size={30} navigation={this.props.navigation}/>
         );
     }
 }
