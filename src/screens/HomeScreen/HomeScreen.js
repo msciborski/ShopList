@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { Container } from 'native-base';
 import { Text } from 'react-native';
-import AppHeader from '../../components/Header/AppHeader';
+
 
 export class HomeScreen extends Component {
     static navigationOptions = {
@@ -10,9 +9,7 @@ export class HomeScreen extends Component {
 
     render() {
         return (
-            <Container>
-                <AppHeader title={"Home"} navigation={this.props.navigation} />
-            </Container>
+            <Text>Home</Text>
         );
     }
 }

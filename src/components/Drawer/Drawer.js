@@ -4,12 +4,12 @@ import { createDrawerNavigator, createAppContainer } from 'react-navigation';
 
 import { HomeScreen } from '../../screens/HomeScreen';
 import { ShopingListListScreen } from '../../screens/ShopingListListScreen';
+import { SingUpScreen } from '../../screens/SingupScreen';
 
 const WIDTH = Dimensions.get('window').width;
 
 const DrawerConfig = {
     drawerWidth: WIDTH * 0.83,
-
 }
 
 const DrawerNavigator = createDrawerNavigator(
@@ -19,7 +19,11 @@ const DrawerNavigator = createDrawerNavigator(
         },
         List: {
             screen: ShopingListListScreen,
-        }
+        },
+        SingUp: {
+            screen: SingUpScreen,
+        },
+        
     }, DrawerConfig);
 
 export default createAppContainer(DrawerNavigator);
