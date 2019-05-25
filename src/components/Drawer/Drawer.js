@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { Platform, Dimensions } from 'react-native';
 import { createDrawerNavigator, createAppContainer } from 'react-navigation';
 
-import Home from '../../screens/Home';
-import List from '../../screens/List';
+import { HomeScreen } from '../../screens/HomeScreen';
+import { ShopingListListScreen } from '../../screens/ShopingListListScreen';
 
 const WIDTH = Dimensions.get('window').width;
 
@@ -15,10 +15,10 @@ const DrawerConfig = {
 const DrawerNavigator = createDrawerNavigator(
     {
         Home: {
-            screen: Home,
+            screen: HomeScreen,
         },
         List: {
-            screen: List,
+            screen: ShopingListListScreen,
         }
     }, DrawerConfig);
 
