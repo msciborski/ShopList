@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
-import { Text } from 'react-native';
+import { Text, View } from 'react-native';
+
+import { MenuIcon } from '../../components/MenuIcon';
 
 export class ShopingListListScreen extends Component {
     render() {
-        return  (
+        return (
+            <View>
+                <MenuIcon size={30} navigation={this.props.navigation}/>
                 <Text>
                     List
                 </Text>
+            </View>
         )
     }
 }
