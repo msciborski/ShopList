@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
     }
 })
 
-class SingInScreen extends Component {
+class SignInScreen extends Component {
     constructor(props) {
         super(props);
 
@@ -34,11 +34,11 @@ class SingInScreen extends Component {
     }
 
     handleSingIn = () => {
-        const { singIn } = this.props;
+        const { signIn } = this.props;
         const { email, password } = this.state;
 
         if (email && password) {
-            singIn(email, password);
+            signIn(email, password);
             this.setState({ email: '', password: '' })
         }
     }
@@ -94,10 +94,10 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        singIn: (email, password) => dispatch(usersAuthActions.singIn(email, password)),
+        signIn: (email, password) => dispatch(usersAuthActions.signIn(email, password)),
     }
 }
 
-const connectedSingInScreen = connect(mapStateToProps, mapDispatchToProps)(SingInScreen);
+const connectedSignInScreen = connect(mapStateToProps, mapDispatchToProps)(SignInScreen);
 
-export { connectedSingInScreen as SingInScreen };
+export { connectedSignInScreen as SignInScreen };

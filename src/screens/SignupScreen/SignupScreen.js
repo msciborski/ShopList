@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
     }
 })
 
-class SingUpScreen extends Component {
+class SignUpScreen extends Component {
     constructor(props) {
         super(props);
 
@@ -98,6 +98,6 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-const connectedSingUpScreen = connect(mapStateToProps, mapDispatchToProps)(SingUpScreen);
+const connectedSignUpScreen = connect(mapStateToProps, mapDispatchToProps)(SignUpScreen);
 
-export { connectedSingUpScreen as SingUpScreen };
+export { connectedSignUpScreen as SignUpScreen };

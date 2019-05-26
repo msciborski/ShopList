@@ -4,9 +4,11 @@ import { createDrawerNavigator, createAppContainer, createSwitchNavigator } from
 
 import { HomeScreen } from '../../screens/HomeScreen';
 import { ShopingListListScreen } from '../../screens/ShopingListListScreen';
-import { SingUpScreen } from '../../screens/SignupScreen';
-import { SingInScreen } from '../../screens/SignInScreen';
+import { SignUpScreen } from '../../screens/SignupScreen';
+import { SignInScreen } from '../../screens/SignInScreen';
+import { SignOutScreen } from '../../screens/SignOutScreen';
 import { AuthLoadingScreen } from '../../screens/AuthLoadingScreen';
+
 
 const WIDTH = Dimensions.get('window').width;
 
@@ -16,10 +18,10 @@ const DrawerConfig = {
 
 const AuthStack = createDrawerNavigator({
     SingUp: {
-        screen: SingUpScreen,
+        screen: SignUpScreen,
     },
     SingIn: {
-        screen: SingInScreen,
+        screen: SignInScreen,
     }
 }, { initialRouteName: 'SingIn' });
 
@@ -31,8 +33,8 @@ const AppStack = createDrawerNavigator({
         screen: ShopingListListScreen
     },
     Logout: {
-        
-    }
+        screen: SignOutScreen,
+    },
 }, { initialRouteName: 'Home' });
 
 // const DrawerNavigator = createDrawerNavigator(

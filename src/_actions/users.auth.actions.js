@@ -48,7 +48,7 @@ function signOut() {
             .catch(error => dispatch(failure(error)));
     }
 
-    function request() { return { type: usersAuthConstants.USER_SING_OUT_REQUEST } };
-    function success() { return { type: usersAuthConstants.USER_SING_OUT_SUCCESS } };
-    function failure(error) { return { type: usersAuthConstants.USER_SING_OUT_FAILURE, error } };
+    function request() { return { type: usersAuthConstants.USER_SIGN_OUT_REQUEST } };
+    function success() { return { type: usersAuthConstants.USER_SIGN_OUT_SUCCESS } };
+    function failure(error) { return { type: usersAuthConstants.USER_SIGN_OUT_FAILURE, error } };
 }

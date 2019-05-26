@@ -36,6 +36,19 @@ export const usersAuthReducer = (state = {}, action) => {
                 loading: false,
                 error: action.error,
             };
+        case usersAuthConstants.USER_SIGN_OUT_REQUEST:
+            return {
+                ...state,
+            };
+        case usersAuthConstants.USER_SIGN_OUT_SUCCESS:
+            return {
+                ...state,
+                user: undefined,
+            };
+        case usersAuthConstants.USER_SIGN_OUT_FAILURE:
+            return {
+                ...state,
+            };
         default:
             return state
     }
