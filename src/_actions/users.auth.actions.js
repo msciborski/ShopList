@@ -14,7 +14,13 @@ function signUp(email, password) {
         return RNFirebase.auth().createUserWithEmailAndPassword(email, password)
         .then(userCredential => {
             const { user } = userCredential;
-            dispatch(success(user)); 
+            const { _user } = user;
+            // console.log('User', user)
+            RNFirebase.firestore().collection('users').doc(_user.uid).set({ username: _user.email })
+                .then(() => {
+                    console.log('Dodano');
+                    dispatch(success(_user));
+                }).catch(error => dispatch(failure(error)))
         }).catch(error => dispatch(failure(error)));
     }
 

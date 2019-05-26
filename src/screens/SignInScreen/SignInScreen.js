@@ -6,6 +6,8 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 
 import { usersAuthActions } from '../../_actions';
 import { HomeScreen } from '../HomeScreen';
+import { AuthLoadingScreen } from '../AuthLoadingScreen';
+import { MenuIcon } from '../../components/MenuIcon';
 
 
 const styles = StyleSheet.create({
@@ -45,11 +47,12 @@ class SignInScreen extends Component {
 
     render() {
         const { email, password } = this.state;
-
+        const { authUser } = this.props;
         return (
-            <ImageBackground source={{uri: "https://cdn.ramseysolutions.net/media/b2c/every_dollar/article-images/everydollar-grocery-shopping-patterns.jpg"}} style={{width: '100%', height: '100%'}}>
+            <ImageBackground source={{ uri: "https://cdn.ramseysolutions.net/media/b2c/every_dollar/article-images/everydollar-grocery-shopping-patterns.jpg" }} style={{ width: '100%', height: '100%' }}>
+                <MenuIcon navigation={this.props.navigation} size={30} />
                 <View style={styles.card}>
-                    <Card style={{ flexDirection: 'column', backgroundColor: 'rgba(255, 255, 255, 0.5)'}}>
+                    <Card style={{ flexDirection: 'column', backgroundColor: 'rgba(255, 255, 255, 0.5)' }}>
                         <Input
                             placeholder='Email'
                             leftIcon={
@@ -80,6 +83,7 @@ class SignInScreen extends Component {
                     </Card>
                 </View>
             </ImageBackground>
+
         );
     }
 }

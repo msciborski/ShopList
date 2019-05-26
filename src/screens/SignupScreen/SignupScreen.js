@@ -34,11 +34,11 @@ class SignUpScreen extends Component {
     }
 
     handleSingUp = () => {
-        const { singUp } = this.props;
+        const { signUp } = this.props;
         const { email, password } = this.state;
 
         if (email && password) {
-            singUp(email, password);
+            signUp(email, password);
             this.setState({ email: '', password: '' })
         }
     }
@@ -94,7 +94,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        singUp: (email, password) => dispatch(usersAuthActions.singUp(email, password)),
+        signUp: (email, password) => dispatch(usersAuthActions.signUp(email, password)),
     }
 }
 

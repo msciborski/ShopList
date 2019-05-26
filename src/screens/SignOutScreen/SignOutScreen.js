@@ -20,8 +20,10 @@ class SignOutScreen extends Component {
 }
 
 const mapStateToProps = state => {
+    const { authUser } = state;
+    console.log('AuthUser', authUser);
     return {
-
+        authUser,
     };
 }
 
