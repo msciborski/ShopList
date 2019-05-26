@@ -4,7 +4,7 @@ import { createDrawerNavigator, createAppContainer, createSwitchNavigator } from
 
 import { HomeScreen } from '../../screens/HomeScreen';
 import { ShopingListListScreen } from '../../screens/ShopingListListScreen';
-import { SingUpScreen } from '../../screens/SingupScreen';
+import { SingUpScreen } from '../../screens/SignupScreen';
 import { SingInScreen } from '../../screens/SignInScreen';
 import { AuthLoadingScreen } from '../../screens/AuthLoadingScreen';
 
@@ -29,6 +29,9 @@ const AppStack = createDrawerNavigator({
     },
     ShopingList: {
         screen: ShopingListListScreen
+    },
+    Logout: {
+        
     }
 }, { initialRouteName: 'Home' });
 
