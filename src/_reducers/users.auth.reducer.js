@@ -10,11 +10,30 @@ export const usersAuthReducer = (state = {}, action) => {
         case usersAuthConstants.USER_SING_UP_SUCCESS:
             return {
                 ...state,
+                loading: false,
                 user: action.user,
             };
         case usersAuthConstants.USER_SING_UP_FAILURE:
             return {
                 ...state,
+                loading: false,
+                error: action.error,
+            };
+        case usersAuthConstants.USER_SING_IN_REQUEST: 
+            return {
+                ...state,
+                loading: true,
+            };
+        case usersAuthConstants.USER_SING_IN_SUCCESS: 
+            return {
+                ...state,
+                loading: false,
+                user: action.user,
+            };
+        case usersAuthConstants.USER_SING_UP_FAILURE:
+            return {
+                ...state,
+                loading: false,
                 error: action.error,
             };
         default:
