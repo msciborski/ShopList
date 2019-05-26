@@ -4,6 +4,7 @@ import RNFirebase from '../Firebase';
 export const usersAuthActions = {
     signUp,
     signIn,
+    signOut,
 };
 
 function signUp(email, password) {
@@ -38,4 +39,16 @@ function signIn(email, password) {
     function failure(error) { return { type: usersAuthConstants.USER_SIGN_IN_FAILURE, error } };
 }
 
-function signOut()
+function signOut() {
+    return dispatch => {
+        dispatch(request());
+
+        RNFirebase.auth().signOut()
+            .then(() => dispatch(success()))
+            .catch(error => dispatch(failure(error)));
+    }
+
+    function request() { return { type: usersAuthConstants.USER_SING_OUT_REQUEST } };
+    function success() { return { type: usersAuthConstants.USER_SING_OUT_SUCCESS } };
+    function failure(error) { return { type: usersAuthConstants.USER_SING_OUT_FAILURE, error } };
+}
