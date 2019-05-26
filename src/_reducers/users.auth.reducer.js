@@ -2,35 +2,35 @@ import { usersAuthConstants } from '../_constants';
 
 export const usersAuthReducer = (state = {}, action) => {
     switch (action.type) {
-        case usersAuthConstants.USER_SING_UP_REQUEST:
+        case usersAuthConstants.USER_SIGN_UP_REQUEST:
             return {
                 ...state,
                 loading: true,
             };
-        case usersAuthConstants.USER_SING_UP_SUCCESS:
+        case usersAuthConstants.USER_SIGN_UP_SUCCESS:
             return {
                 ...state,
                 loading: false,
                 user: action.user,
             };
-        case usersAuthConstants.USER_SING_UP_FAILURE:
+        case usersAuthConstants.USER_SIGN_UP_FAILURE:
             return {
                 ...state,
                 loading: false,
                 error: action.error,
             };
-        case usersAuthConstants.USER_SING_IN_REQUEST: 
+        case usersAuthConstants.USER_SIGN_IN_REQUEST: 
             return {
                 ...state,
                 loading: true,
             };
-        case usersAuthConstants.USER_SING_IN_SUCCESS: 
+        case usersAuthConstants.USER_SIGN_IN_SUCCESS: 
             return {
                 ...state,
                 loading: false,
                 user: action.user,
             };
-        case usersAuthConstants.USER_SING_UP_FAILURE:
+        case usersAuthConstants.USER_SIGN_UP_FAILURE:
             return {
                 ...state,
                 loading: false,

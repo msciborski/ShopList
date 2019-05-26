@@ -2,11 +2,11 @@ import { usersAuthConstants } from '../_constants';
 import RNFirebase from '../Firebase';
 
 export const usersAuthActions = {
-    singUp,
-    singIn,
+    signUp,
+    signIn,
 };
 
-function singUp(email, password) {
+function signUp(email, password) {
     return dispatch => {
         dispatch(request());
 
@@ -17,12 +17,12 @@ function singUp(email, password) {
         }).catch(error => dispatch(failure(error)));
     }
 
-    function request() { return { type: usersAuthConstants.USER_SING_UP_REQUEST } };
-    function success(user) { return { type: usersAuthConstants.USER_SING_UP_SUCCESS, user } };
-    function failure(error) { return { type: usersAuthConstants.USER_SING_UP_FAILURE, error } };
+    function request() { return { type: usersAuthConstants.USER_SIGN_UP_REQUEST } };
+    function success(user) { return { type: usersAuthConstants.USER_SIGN_UP_SUCCESS, user } };
+    function failure(error) { return { type: usersAuthConstants.USER_SIGN_UP_FAILURE, error } };
 }
 
-function singIn(email, password) {
+function signIn(email, password) {
     return dispatch => {
         dispatch(request());
 
@@ -33,7 +33,9 @@ function singIn(email, password) {
             }).catch(error => dispatch(failure(error)));
     }
 
-    function request() { return { type: usersAuthConstants.USER_SING_IN_REQUEST } };
-    function success(user) { return { type: usersAuthConstants.USER_SING_IN_SUCCESS, user } };
-    function failure(error) { return { type: usersAuthConstants.USER_SING_IN_FAILURE, error } };
+    function request() { return { type: usersAuthConstants.USER_SIGN_IN_REQUEST } };
+    function success(user) { return { type: usersAuthConstants.USER_SIGN_IN_SUCCESS, user } };
+    function failure(error) { return { type: usersAuthConstants.USER_SIGN_IN_FAILURE, error } };
 }
+
+function signOut()
