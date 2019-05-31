@@ -11,6 +11,5 @@ const firebaseConfig = {
 };
 
 RNFirebase.initializeApp(firebaseConfig);
-RNFirebase.firestore();
 
 export default RNFirebase;

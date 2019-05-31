@@ -37,23 +37,6 @@ const AppStack = createDrawerNavigator({
     },
 }, { initialRouteName: 'Home' });
 
-// const DrawerNavigator = createDrawerNavigator(
-//     {
-//         Home: {
-//             screen: HomeScreen,
-//         },
-//         List: {
-//             screen: ShopingListListScreen,
-//         },
-//         SingUp: {
-//             screen: SingUpScreen,
-//         },
-//         SingIn: {
-//             screen: SingInScreen,
-//         }
-        
-//     }, DrawerConfig);
-
 const MainSwitchNavigator = createSwitchNavigator({
     AuthLoading: AuthLoadingScreen,
     App: AppStack,

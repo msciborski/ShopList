@@ -6,19 +6,31 @@ export const shopListActions = {
 };
 
 function getUserShopLists(userId) {
+    console.log('UserId', userId);
     return dispatch => {
         dispatch(request());
 
-        RNFirebase
-            .firestore()
-            .collection('users')
-            .doc(userId)
-            .collection('shoplist')
-            .get().then(snapshot => {
-                const shopLists = snapshot.map(doc => doc.data());
-                dispatch(success(shopLists));
-            }).catch(err => dispatch(failure(err)));
+        RNFirebase.firestore()
+            .collection('users').doc(userId).collection('shoplist')
+                .get().then(querySnapshot => {
+                    const shopLists = [];
+                    querySnapshot.forEach(snapshot => {
+                        const doc = snapshot.data();
+                        doc['shopListElements'] = [];
+                        const id = snapshot.id;
 
+                        RNFirebase.firestore().collection('users').doc(userId).collection('shoplist').doc(id).collection('ShopListElements')
+                            .get().then(querySnapshot => {
+                                querySnapshot.forEach(snapshot => {
+                                    doc.shopListElements.push(snapshot.data());
+                                })
+                            }).catch(err => dispatch(failure(err)));
+
+                        shopLists.push(doc);
+                    });
+
+                    dispatch(success(shopLists));
+                }).catch(err => failure(err));
 
         function request() { return { type: shopListConstants.GET_USER_SHOPLISTS_REQUEST } };
         function success(shopLists) { return { type: shopListConstants.GET_USER_SHOPLISTS_SUCCESS, userShopLists: shopLists } };
