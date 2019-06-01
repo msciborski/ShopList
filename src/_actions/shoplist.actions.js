@@ -3,10 +3,10 @@ import RNFirebase from '../Firebase';
 
 export const shopListActions = {
     getUserShopLists,
+    addElementToShopList,
 };
 
 function getUserShopLists(userId) {
-    console.log('UserId', userId);
     return dispatch => {
         dispatch(request());
 
@@ -26,7 +26,7 @@ function getUserShopLists(userId) {
                                 querySnapshot.forEach(snapshot => {
                                     const shopListElement = snapshot.data();
                                     shopListElement['id'] = snapshot.id,
-                                    
+
                                     doc.shopListElements.push(shopListElement);
                                 })
                             }).catch(err => dispatch(failure(err)));
@@ -41,4 +41,18 @@ function getUserShopLists(userId) {
         function success(shopLists) { return { type: shopListConstants.GET_USER_SHOPLISTS_SUCCESS, userShopLists: shopLists } };
         function failure(error) { return { type: shopListConstants.GET_USER_SHOPLISTS_FAILURE, error } };
     }
+}
+
+function addElementToShopList(shopListId, userId, element) {
+    return dispatch => {
+        dispatch(request());
+
+        RNFirebase.firestore().collection('users').doc(userId).collection('shoplist').doc(shopListId).collection('ShopListElements')
+            .add(element)
+                .then(ref => dispatch(success()))
+                .catch(err => dispatch(failure(err)));
+    }
+    function request() { return { type: shopListConstants.ADD_SHOPLIST_ELEMENT_REQUEST } };
+    function success() { return { type: shopListConstants.ADD_SHOPLIST_ELEMENT_SUCCESS } };
+    function failure(error) { return { type: shopListConstants.ADD_SHOPLIST_ELEMENT_FAILURE, error} };
 }

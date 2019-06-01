@@ -45,8 +45,12 @@ export class ShopListScreen extends Component {
     constructor(props) {
         super(props);
         this.props.navigation.setParams({ handleAddButton: this.handleAddButtonPress, handleCancelButton: this.handleCancelButtonPress, handleAcceptButton: this.handleAcceptButtonPress });
+
+        const shopList = navigation.getParam('shopList');
+
         this.state = {
             IsAddButtonPressed: false,
+            shopList,
         }
     }
 
@@ -67,9 +71,8 @@ export class ShopListScreen extends Component {
 
     render() {
         const { navigation } = this.props;
-        const { IsAddButtonPressed } = this.state;
+        const { IsAddButtonPressed, shopList } = this.state;
 
-        const shopList = navigation.getParam('shopList');
         const { shopListElements } = shopList;
 
         return (
