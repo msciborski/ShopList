@@ -13,7 +13,7 @@ export class ShopingListList extends Component {
         const { name, shopListElements } = shopList;
 
         navigation.navigate('ShopingListStack');
-        navigation.navigate('ShopingList', { shopListElements: shopListElements, name });
+        navigation.navigate('ShopingList', { shopList });
     }
 
     render() {
@@ -23,8 +23,6 @@ export class ShopingListList extends Component {
             <View>
                 {
                     shopingLists.map((item, i) => {
-                        const { shopListElements } = item;
-                        console.log('ShopListElements from ShpingListList', shopListElements);
                         return (
                             <ListItem
                                 key={i}

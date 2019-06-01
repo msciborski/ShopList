@@ -46,29 +46,31 @@ export class ShopListScreen extends Component {
         super(props);
         this.props.navigation.setParams({ handleAddButton: this.handleAddButtonPress, handleCancelButton: this.handleCancelButtonPress, handleAcceptButton: this.handleAcceptButtonPress });
         this.state = {
-            addButtonPressed: false,
+            IsAddButtonPressed: false,
         }
     }
 
     handleAddButtonPress = () => {
         this.props.navigation.setParams({ addButtonPressed: true });
-        this.setState({ addButtonPressed: true });
+        this.setState({ IsAddButtonPressed: true });
     }
 
     handleCancelButtonPress = () => {
         this.props.navigation.setParams({ addButtonPressed: false });
-        this.setState({ addButtonPressed: false });
+        this.setState({ IsAddButtonPressed: false });
     }
 
     handleAcceptButtonPress = () => {
         this.props.navigation.setParams({ addButtonPressed: false });
-        this.setState({ addButtonPressed: false });
+        this.setState({ IsAddButtonPressed: false });
     }
 
     render() {
         const { navigation } = this.props;
-        const { addButtonPressed } = this.state;
-        const shopListElements = navigation.getParam('shopListElements');
+        const { IsAddButtonPressed } = this.state;
+
+        const shopList = navigation.getParam('shopList');
+        const { shopListElements } = shopList;
 
         return (
             <View>
@@ -78,12 +80,13 @@ export class ShopListScreen extends Component {
                             <ListItem
                                 key={index}
                                 title={item.Name}
+                                checkBox={{ checked: item.isChecked }}
                             />
                         )
                     })
                 }
                 {
-                    addButtonPressed &&
+                    IsAddButtonPressed &&
                         <Text>Button clicked</Text>
                 }
             </View>
