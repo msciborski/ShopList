@@ -24,7 +24,10 @@ function getUserShopLists(userId) {
                         RNFirebase.firestore().collection('users').doc(userId).collection('shoplist').doc(id).collection('ShopListElements')
                             .get().then(querySnapshot => {
                                 querySnapshot.forEach(snapshot => {
-                                    doc.shopListElements.push(snapshot.data());
+                                    const shopListElement = snapshot.data();
+                                    shopListElement['id'] = snapshot.id,
+                                    
+                                    doc.shopListElements.push(shopListElement);
                                 })
                             }).catch(err => dispatch(failure(err)));
 
