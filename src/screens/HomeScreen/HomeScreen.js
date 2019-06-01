@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Text, View } from 'react-native';
 import { MenuIcon } from '../../components/MenuIcon';
 import { shopListActions } from '../../_actions';
+import { ShopingListList } from '../../components/ShopingListList/ShopingListList';
 
 
 class HomeScreen extends Component {
@@ -22,10 +23,16 @@ class HomeScreen extends Component {
     }
 
     render() {
+        const { userShopLists } = this.props;
+        const { navigation } = this.props;
         return (
+            userShopLists ?
             <View>
-            <MenuIcon size={30} navigation={this.props.navigation}/>
-            <Text></Text>
+                <MenuIcon size={30} navigation={this.props.navigation} />
+                <ShopingListList shopingLists={userShopLists} navigation={navigation} />
+            </View> :
+            <View>
+                <MenuIcon size={30} navigation={this.props.navigation} />
             </View>
         );
     }
@@ -34,9 +41,9 @@ class HomeScreen extends Component {
 
 const mapStateToProps = state => {
     const { shopListReducer } = state;
-
+    console.log('State', state);
     return {
-        shopListReducer,
+        userShopLists: shopListReducer.userShopLists,
     };
 }
 
