@@ -8,13 +8,12 @@ export class ShopingListList extends Component {
     }
 
 
-    handleListElementPress = (shopListElements) => {
+    handleListElementPress = (shopList) => {
         const { navigation } = this.props;
-        console.log('ShopingListElements', shopListElements);
-        console.log('Shoping list props', this.props);
-        console.log('Navigation', navigation);
+        const { name, shopListElements } = shopList;
+
         navigation.navigate('ShopingListStack');
-        navigation.navigate('ShopingList', { shopListElements: shopListElements });
+        navigation.navigate('ShopingList', { shopListElements: shopListElements, name });
     }
 
     render() {
@@ -30,7 +29,7 @@ export class ShopingListList extends Component {
                             <ListItem
                                 key={i}
                                 title={item.name}
-                                onPress={() => this.handleListElementPress([...item.shopListElements])}
+                                onPress={() => this.handleListElementPress(item)}
                             />
                         );
                     })
