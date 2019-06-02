@@ -5,6 +5,7 @@ export const shopListActions = {
     getUserShopLists,
     addElementToShopList,
     addShoplist,
+    updateShopListElement,
 };
 
 function getUserShopLists(userId) {
@@ -70,4 +71,20 @@ function addShoplist(userId, shopList) {
     function request() { return { type: shopListConstants.ADD_SHOPLIST_REQUEST } };
     function success() { return { type: shopListConstants.ADD_SHOPLIST_SUCCESS } };
     function failure() { return { type: shopListConstants.ADD_SHOPLIST_FAILURE } };
+}
+
+function updateShopListElement(userId, shopListId, shopListElementId, element) {
+    return dispatch => {
+        dispatch(request());
+        
+        RNFirebase.firestore().collection('users').doc(userId).collection('shoplist').doc(shopListId).collection('ShopListElements').doc(shopListElementId)
+            .set(element)
+                .then(ref => dispatch(success()))
+                .catch(err => dispatch(failure(err)));
+    }
+
+
+    function request() { return { type: shopListConstants.UPDATE_SHOPLIST_ELEMENT_REQUEST } };
+    function success() { return { type: shopListConstants.UPDATE_SHOPLIST_ELEMENT_SUCCESS } };
+    function failure(error) { return { type: shopListConstants.UPDATE_SHOPLIST_ELEMENT_FAILURE } };
 }

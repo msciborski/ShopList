@@ -42,6 +42,19 @@ export const shopListReducer = (state = {}, action) => {
                 ...state,
                 error: action.error,
             };
+        case shopListConstants.UPDATE_SHOPLIST_ELEMENT_REQUEST:
+            return {
+                ...state,
+            };
+        case shopListConstants.UPDATE_SHOPLIST_ELEMENT_SUCCESS:
+            return {
+                ...state,
+            };
+        case shopListConstants.UPDATE_SHOPLIST_ELEMENT_FAILURE:
+            return {
+                ...state,
+                error: action.error,
+            };
         default:
             return state;
     }
