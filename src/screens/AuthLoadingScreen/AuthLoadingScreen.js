@@ -9,10 +9,8 @@ export class AuthLoadingScreen extends Component {
     }
 
     componentDidMount() {
-        console.log('ComponentDidMout');
         RNFirebase.auth().onAuthStateChanged(user => {
-            console.log(user);
-
+            console.log('User AuthLoadingScreen', user);
             this.props.navigation.navigate(user ? 'App' : 'Auth');
         })
     }

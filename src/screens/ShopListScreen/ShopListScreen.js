@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { View, Text } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { ListItem } from 'react-native-elements';
+import { shopListActions } from '../../_actions';
+import RNFirebase from '../../Firebase';
 
 
-export class ShopListScreen extends Component {
-    static navigationOptions = ({navigation}) => {
+class ShopListScreen extends Component {
+    static navigationOptions = ({ navigation }) => {
         return {
             title: navigation.getParam('name', 'List'),
             headerLeft: (
@@ -24,14 +27,14 @@ export class ShopListScreen extends Component {
                         style={{ padding: 10 }}
                         onPress={() => navigation.getParam('handleAddButton')()}
                     /> :
-                    <View style={{ flexDirection: 'row'}}>
-                        <Icon 
+                    <View style={{ flexDirection: 'row' }}>
+                        <Icon
                             name="check"
                             size={30}
                             style={{ padding: 10 }}
                             onPress={() => navigation.getParam('handleAcceptButton')()}
                         />
-                        <Icon 
+                        <Icon
                             name="times"
                             size={30}
                             style={{ padding: 10 }}
@@ -42,16 +45,31 @@ export class ShopListScreen extends Component {
         };
     }
 
+
+
+
     constructor(props) {
         super(props);
         this.props.navigation.setParams({ handleAddButton: this.handleAddButtonPress, handleCancelButton: this.handleCancelButtonPress, handleAcceptButton: this.handleAcceptButtonPress });
 
-        const shopList = navigation.getParam('shopList');
+        const shopList = this.props.navigation.getParam('shopList');
 
         this.state = {
+            user: undefined,
             IsAddButtonPressed: false,
             shopList,
+            newElementName: '',
         }
+    }
+
+    componentDidMount() {
+        RNFirebase.auth().onAuthStateChanged(user => {
+            if (user) {
+                this.setState({ user: user._user })
+            }
+
+            this.props.navigation.navigate(user ? 'ShopingListStack' : 'Auth');
+        })
     }
 
     handleAddButtonPress = () => {
@@ -65,13 +83,21 @@ export class ShopListScreen extends Component {
     }
 
     handleAcceptButtonPress = () => {
+        const { newElementName, user, shopList } = this.state;
+        const { addElement } = this.props;
+        const element = { Name: newElementName, isChecked: false };
+
+        addElement(shopList.id, user.uid, element);
+        shopList.shopListElements.push(element);
+
         this.props.navigation.setParams({ addButtonPressed: false });
         this.setState({ IsAddButtonPressed: false });
+        this.setState({ shopList });
     }
 
     render() {
         const { navigation } = this.props;
-        const { IsAddButtonPressed, shopList } = this.state;
+        const { IsAddButtonPressed, shopList, newElementName } = this.state;
 
         const { shopListElements } = shopList;
 
@@ -90,9 +116,27 @@ export class ShopListScreen extends Component {
                 }
                 {
                     IsAddButtonPressed &&
-                        <Text>Button clicked</Text>
+                    <ListItem
+                        title="New element name"
+                        input={{ value:newElementName , onChangeText: text => this.setState({ newElementName: text }), inputContainerStyle:{ flexDirection: 'row', backgroundColor: '#c2c6ce' } }}
+                  />
                 }
             </View>
         )
     }
 }
+
+const mapStateToProps = state => {
+    return {
+    };
+};
+
+const mapDispatchToProps = dispatch => {
+    return {
+        addElement: (shopListId, userId, element) => dispatch(shopListActions.addElementToShopList(shopListId, userId, element)),
+    };
+}
+
+const connectedShopListScreen = connect(mapStateToProps, mapDispatchToProps)(ShopListScreen);
+
+export { connectedShopListScreen as ShopListScreen };
