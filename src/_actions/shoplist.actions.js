@@ -4,6 +4,7 @@ import RNFirebase from '../Firebase';
 export const shopListActions = {
     getUserShopLists,
     addElementToShopList,
+    addShoplist,
 };
 
 function getUserShopLists(userId) {
@@ -55,4 +56,18 @@ function addElementToShopList(shopListId, userId, element) {
     function request() { return { type: shopListConstants.ADD_SHOPLIST_ELEMENT_REQUEST } };
     function success() { return { type: shopListConstants.ADD_SHOPLIST_ELEMENT_SUCCESS } };
     function failure(error) { return { type: shopListConstants.ADD_SHOPLIST_ELEMENT_FAILURE, error} };
+}
+
+function addShoplist(userId, shopList) {
+    return dispatch => {
+        dispatch(request());
+        RNFirebase.firestore().collection('users').doc(userId).collection('shoplist')
+            .add(shopList)
+                .then(ref => dispatch(success()))
+                .catch(err => dispatch(failure(err)));
+    }
+
+    function request() { return { type: shopListConstants.ADD_SHOPLIST_REQUEST } };
+    function success() { return { type: shopListConstants.ADD_SHOPLIST_SUCCESS } };
+    function failure() { return { type: shopListConstants.ADD_SHOPLIST_FAILURE } };
 }
