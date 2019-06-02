@@ -102,26 +102,27 @@ class ShopListScreen extends Component {
         const { shopListElements } = shopList;
 
         return (
-            <View>
-                {
-                    shopListElements.map((item, index) => {
-                        return (
-                            <ListItem
-                                key={index}
-                                title={item.Name}
-                                checkBox={{ checked: item.isChecked }}
-                            />
-                        )
-                    })
-                }
-                {
-                    IsAddButtonPressed &&
-                    <ListItem
-                        title="New element name"
-                        input={{ value:newElementName , onChangeText: text => this.setState({ newElementName: text }), inputContainerStyle:{ flexDirection: 'row', backgroundColor: '#c2c6ce' } }}
-                  />
-                }
-            </View>
+            shopList &&
+                <View>
+                    {
+                        shopListElements.map((item, index) => {
+                            return (
+                                <ListItem
+                                    key={index}
+                                    title={item.Name}
+                                    checkBox={{ checked: item.isChecked }}
+                                />
+                            )
+                        })
+                    }
+                    {
+                        IsAddButtonPressed &&
+                        <ListItem
+                            title="New element name"
+                            input={{ value: newElementName, onChangeText: text => this.setState({ newElementName: text }), inputContainerStyle: { flexDirection: 'row', backgroundColor: '#c2c6ce' } }}
+                        />
+                    }
+                </View>
         )
     }
 }

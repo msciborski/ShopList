@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Text, View } from 'react-native';
 import { MenuIcon } from '../../components/MenuIcon';
 import { shopListActions } from '../../_actions';
-import { ShopingListList } from '../../components/ShopingListList/ShopingListList';
+import { ShopingListList } from '../../components/ShopingListList';
 
 
 class HomeScreen extends Component {
