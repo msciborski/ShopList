@@ -4,7 +4,12 @@ import { Text, View } from 'react-native';
 import { MenuIcon } from '../../components/MenuIcon';
 import { shopListActions } from '../../_actions';
 import { ShopingListList } from '../../components/ShopingListList';
+import firebase from 'react-native-firebase';
 
+const Banner = firebase.admob.Banner;
+const AdRequest = firebase.admob.AdRequest;
+const request = new AdRequest();
+request.addKeyword('cars');
 
 class HomeScreen extends Component {
     static navigationOptions = {
@@ -25,11 +30,21 @@ class HomeScreen extends Component {
     render() {
         const { userShopLists } = this.props;
         const { navigation } = this.props;
+
+        console.log('Firebase admob:', firebase.admob);
         return (
             userShopLists ?
             <View>
                 <MenuIcon size={30} navigation={this.props.navigation} />
                 <ShopingListList shopingLists={userShopLists} navigation={navigation} />
+                <Banner 
+                    style={{ alignSelf: 'flex-end', flexDirection: 'column'}}
+                    size={"LARGE_BANNER"}
+                    request={request.build()}
+                    unitId="ca-app-pub-3748001695252983/2558715232"
+                    onAdLoaded={() => console.log('Advert loaded')}
+                    onAdFailedToLoad={err => console.log(err)}
+                />
             </View> :
             <View>
                 <MenuIcon size={30} navigation={this.props.navigation} />
